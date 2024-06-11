@@ -1,0 +1,64 @@
+{
+  "key_type_defalt": "manga-en",
+  "key_lang_defalt": "en",
+  "domain_name": "manga.fit",
+  "brand_name": "Manga Biz",
+  "brand_name_other": "Manga Biz",
+  "image_bg": "/assets/backgaroud/bg.jpg",
+  "lang_seo": "en",
+  "analytics_key": "G-LV99NPQWNC",
+  "bing_key": "b56e1003fc7744ebb65e65319b8dbb4c",
+  "google_key": "",
+  "monetag_key": "a70a1d0e38503feb63df00c9f99935cc",
+  "ads": [
+    {
+      "key": "yandex",
+      "value": "R-A-5255345-2",
+      "unit": "",
+      "tempAds": "manga.fit",
+      "type": "baner"
+    },
+    {
+      "key": "adsterra",
+      "value": "4b3f85eed5d784d61a7d77b52d31704f",
+      "unit": "",
+      "tempAds": "manga.fit",
+      "type": "baner"
+    },
+    {
+      "key": "pubfuture-sticky",
+      "value": "pf-7281-1",
+      "unit": "65a78b8db2051a41f9173ff8",
+      "tempAds": "manga.fit",
+      "type": "sticky"
+    },
+    {
+      "key": "pubfuture-baner",
+      "value": "pf-7281-1",
+      "unit": "65a78b8db2051a41f9173ff8",
+      "tempAds": "manga.fit",
+      "type": "banner"
+    },
+    {
+      "key": "monetag-popup",
+      "value": "popup-1",
+      "unit": "",
+      "tempAds": "manga.fit",
+      "type": "popup"
+    },
+    {
+      "key": "monetag-inital",
+      "value": "//thubanoa.com/1?z=5103425",
+      "unit": "",
+      "tempAds": "manga.fit",
+      "type": "popup"
+    },
+    {
+      "key": "popcash-popup",
+      "value": "popup-1",
+      "unit": "",
+      "tempAds": "manga.fit",
+      "type": "popup"
+    }
+  ]
+}

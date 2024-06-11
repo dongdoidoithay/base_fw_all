@@ -1,0 +1,1223 @@
+server {
+	listen 80;
+	listen [::]:80;
+
+}
+# Start FW 
+server {
+	server_name kissmanga.lol www.kissmanga.lol manga.autos www.manga.autos mangapuma.lol www.mangapuma.lol mangaread.lol www.mangaread.lol mangaplus.lol www.mangaplus.lol mangago.lol www.mangago.lol;
+	
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection 'upgrade';
+	proxy_set_header Host $host;
+	proxy_cache_bypass $http_upgrade;
+
+	#merge_slashes off;
+	location / {
+	    proxy_pass http://localhost:666;
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header X-Cache-Status $upstream_cache_status;
+	}
+}
+
+
+# End FW
+
+server {
+	server_name mangakatana.xyz www.mangakatana.xyz;
+	gzip on;
+	gzip_proxied any;
+	gzip_comp_level 4;
+	gzip_types text/css application/javascript image/svg+xml;
+
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection 'upgrade';
+	proxy_set_header Host $host;
+	proxy_cache_bypass $http_upgrade;
+
+	location / {
+	    proxy_pass http://localhost:4001;
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header X-Cache-Status $upstream_cache_status;
+	}
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/mangakatana.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/mangakatana.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+# api New
+upstream api {
+    server localhost:4002;
+    server localhost:8080 backup;
+}
+
+server {
+   server_name   api.unionmanga.xyz;
+
+    location / {
+        proxy_pass http://api;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+	underscores_in_headers on;
+    # Additional server configurations as needed.
+	listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/api.unionmanga.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/api.unionmanga.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+
+server {
+	server_name unionmanga.xyz www.unionmanga.xyz;
+	gzip on;
+	gzip_proxied any;
+	gzip_comp_level 4;
+	gzip_types text/css application/javascript image/svg+xml;
+
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection 'upgrade';
+	proxy_set_header Host $host;
+	proxy_cache_bypass $http_upgrade;
+
+	#merge_slashes off;
+	location / {
+	    proxy_pass http://localhost:5001;
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header X-Cache-Status $upstream_cache_status;
+
+		#proxy_cache STATIC;
+		#proxy_ignore_headers Cache-Control;
+		#proxy_cache_valid 60m;
+	}
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/unionmanga.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/unionmanga.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+	server_name yaoi-chan.xyz www.yaoi-chan.xyz;
+	gzip on;
+	gzip_proxied any;
+	gzip_comp_level 4;
+	gzip_types text/css application/javascript image/svg+xml;
+
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection 'upgrade';
+	proxy_set_header Host $host;
+	proxy_cache_bypass $http_upgrade;
+
+	#merge_slashes off;
+	location / {
+	    proxy_pass http://localhost:5002;
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header X-Cache-Status $upstream_cache_status;
+
+		#proxy_cache STATIC;
+		#proxy_ignore_headers Cache-Control;
+		#proxy_cache_valid 60m;
+	}
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/yaoi-chan.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/yaoi-chan.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+	server_name mangahere.lol www.mangahere.lol;
+	gzip on;
+	gzip_proxied any;
+	gzip_comp_level 4;
+	gzip_types text/css application/javascript image/svg+xml;
+
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection 'upgrade';
+	proxy_set_header Host $host;
+	proxy_cache_bypass $http_upgrade;
+
+	#merge_slashes off;
+	location / {
+	    proxy_pass http://localhost:5003;
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header X-Cache-Status $upstream_cache_status;
+	}
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/mangahere.lol/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/mangahere.lol/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+	server_name pandamanga.xyz www.pandamanga.xyz;
+	gzip on;
+	gzip_proxied any;
+	gzip_comp_level 4;
+	gzip_types text/css application/javascript image/svg+xml;
+
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection 'upgrade';
+	proxy_set_header Host $host;
+	proxy_cache_bypass $http_upgrade;
+
+	#merge_slashes off;
+	location / {
+	    proxy_pass http://localhost:5004;
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header X-Cache-Status $upstream_cache_status;
+	}
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/pandamanga.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/pandamanga.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+server {
+	server_name kumascans.xyz www.kumascans.xyz;
+	gzip on;
+	gzip_proxied any;
+	gzip_comp_level 4;
+	gzip_types text/css application/javascript image/svg+xml;
+
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection 'upgrade';
+	proxy_set_header Host $host;
+	proxy_cache_bypass $http_upgrade;
+
+	#merge_slashes off;
+	location / {
+	    proxy_pass http://localhost:5005;
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header X-Cache-Status $upstream_cache_status;
+	}
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/kumascans.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/kumascans.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+	server_name mangareborn.xyz www.mangareborn.xyz;
+	gzip on;
+	gzip_proxied any;
+	gzip_comp_level 4;
+	gzip_types text/css application/javascript image/svg+xml;
+
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection 'upgrade';
+	proxy_set_header Host $host;
+	proxy_cache_bypass $http_upgrade;
+
+	#merge_slashes off;
+	location / {
+	    proxy_pass http://localhost:5006;
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header X-Cache-Status $upstream_cache_status;
+	}
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/mangareborn.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/mangareborn.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+	server_name starmanga.xyz www.starmanga.xyz;
+	gzip on;
+	gzip_proxied any;
+	gzip_comp_level 4;
+	gzip_types text/css application/javascript image/svg+xml;
+
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection 'upgrade';
+	proxy_set_header Host $host;
+	proxy_cache_bypass $http_upgrade;
+
+	#merge_slashes off;
+	location / {
+	    proxy_pass http://localhost:5007;
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header X-Cache-Status $upstream_cache_status;
+	}
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/starmanga.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/starmanga.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+	server_name mangareader.lol www.mangareader.lol;
+	gzip on;
+	gzip_proxied any;
+	gzip_comp_level 4;
+	gzip_types text/css application/javascript image/svg+xml;
+
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection 'upgrade';
+	proxy_set_header Host $host;
+	proxy_cache_bypass $http_upgrade;
+
+	#merge_slashes off;
+	location / {
+	    proxy_pass http://localhost:5008;
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header X-Cache-Status $upstream_cache_status;
+	}
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/mangareader.lol/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/mangareader.lol/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+	server_name unionleitor.lol www.unionleitor.lol;
+	gzip on;
+	gzip_proxied any;
+	gzip_comp_level 4;
+	gzip_types text/css application/javascript image/svg+xml;
+
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection 'upgrade';
+	proxy_set_header Host $host;
+	proxy_cache_bypass $http_upgrade;
+
+	#merge_slashes off;
+	location / {
+	    proxy_pass http://localhost:5009;
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header X-Cache-Status $upstream_cache_status;
+	}
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/unionleitor.lol/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/unionleitor.lol/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+	server_name unionmanga.lol www.unionmanga.lol;
+	gzip on;
+	gzip_proxied any;
+	gzip_comp_level 4;
+	gzip_types text/css application/javascript image/svg+xml;
+
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection 'upgrade';
+	proxy_set_header Host $host;
+	proxy_cache_bypass $http_upgrade;
+
+	#merge_slashes off;
+	location / {
+	    proxy_pass http://localhost:5010;
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header X-Cache-Status $upstream_cache_status;
+	}
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/unionmanga.lol/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/unionmanga.lol/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+	server_name mangakakalot.lol www.mangakakalot.lol;
+	gzip on;
+	gzip_proxied any;
+	gzip_comp_level 4;
+	gzip_types text/css application/javascript image/svg+xml;
+
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection 'upgrade';
+	proxy_set_header Host $host;
+	proxy_cache_bypass $http_upgrade;
+
+	#merge_slashes off;
+	location / {
+	    proxy_pass http://localhost:5011;
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header X-Cache-Status $upstream_cache_status;
+	}
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/mangakakalot.lol/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/mangakakalot.lol/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+	server_name pandamanga.net www.pandamanga.net;
+	gzip on;
+	gzip_proxied any;
+	gzip_comp_level 4;
+	gzip_types text/css application/javascript image/svg+xml;
+
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection 'upgrade';
+	proxy_set_header Host $host;
+	proxy_cache_bypass $http_upgrade;
+
+	#merge_slashes off;
+	location / {
+	    proxy_pass http://localhost:5012;
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header X-Cache-Status $upstream_cache_status;
+	}
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/pandamanga.net/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/pandamanga.net/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+	server_name 247manga.xyz www.247manga.xyz;
+	gzip on;
+	gzip_proxied any;
+	gzip_comp_level 4;
+	gzip_types text/css application/javascript image/svg+xml;
+
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection 'upgrade';
+	proxy_set_header Host $host;
+	proxy_cache_bypass $http_upgrade;
+
+	#merge_slashes off;
+	location / {
+	    proxy_pass http://localhost:5013;
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header X-Cache-Status $upstream_cache_status;
+	}
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/247manga.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/247manga.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+server {
+	server_name mangalib.lol www.mangalib.lol;
+	gzip on;
+	gzip_proxied any;
+	gzip_comp_level 4;
+	gzip_types text/css application/javascript image/svg+xml;
+
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection 'upgrade';
+	proxy_set_header Host $host;
+	proxy_cache_bypass $http_upgrade;
+
+	#merge_slashes off;
+	location / {
+	    proxy_pass http://localhost:666;
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header X-Cache-Status $upstream_cache_status;
+	}
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/mangalib.lol/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/mangalib.lol/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+	server_name mangabuddy.lol www.mangabuddy.lol;
+	gzip on;
+	gzip_proxied any;
+	gzip_comp_level 4;
+	gzip_types text/css application/javascript image/svg+xml;
+
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection 'upgrade';
+	proxy_set_header Host $host;
+	proxy_cache_bypass $http_upgrade;
+
+	#merge_slashes off;
+	location / {
+	    proxy_pass http://localhost:5015;
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header X-Cache-Status $upstream_cache_status;
+	}
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/mangabuddy.lol/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/mangabuddy.lol/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+	server_name mangadino.lol www.mangadino.lol;
+	gzip on;
+	gzip_proxied any;
+	gzip_comp_level 4;
+	gzip_types text/css application/javascript image/svg+xml;
+
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection 'upgrade';
+	proxy_set_header Host $host;
+	proxy_cache_bypass $http_upgrade;
+
+	#merge_slashes off;
+	location / {
+	    proxy_pass http://localhost:5016;
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header X-Cache-Status $upstream_cache_status;
+	}
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/mangadino.lol/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/mangadino.lol/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+	server_name unionmangas.xyz www.unionmangas.xyz;
+	gzip on;
+	gzip_proxied any;
+	gzip_comp_level 4;
+	gzip_types text/css application/javascript image/svg+xml;
+
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection 'upgrade';
+	proxy_set_header Host $host;
+	proxy_cache_bypass $http_upgrade;
+
+	#merge_slashes off;
+	location / {
+	    proxy_pass http://localhost:5017;
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header X-Cache-Status $upstream_cache_status;
+	}
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/unionmangas.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/unionmangas.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+	server_name bibimanga.xyz www.bibimanga.xyz;
+	gzip on;
+	gzip_proxied any;
+	gzip_comp_level 4;
+	gzip_types text/css application/javascript image/svg+xml;
+
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection 'upgrade';
+	proxy_set_header Host $host;
+	proxy_cache_bypass $http_upgrade;
+
+	#merge_slashes off;
+	location / {
+	    proxy_pass http://localhost:5018;
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header X-Cache-Status $upstream_cache_status;
+	}
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/bibimanga.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/bibimanga.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+	server_name mangatopnew.xyz www.mangatopnew.xyz;
+	gzip on;
+	gzip_proxied any;
+	gzip_comp_level 4;
+	gzip_types text/css application/javascript image/svg+xml;
+
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection 'upgrade';
+	proxy_set_header Host $host;
+	proxy_cache_bypass $http_upgrade;
+
+	#merge_slashes off;
+	location / {
+	    proxy_pass http://localhost:5019;
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header X-Cache-Status $upstream_cache_status;
+	}
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/mangatopnew.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/mangatopnew.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+	server_name goldenmangas.lol www.goldenmangas.lol;
+	gzip on;
+	gzip_proxied any;
+	gzip_comp_level 4;
+	gzip_types text/css application/javascript image/svg+xml;
+
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection 'upgrade';
+	proxy_set_header Host $host;
+	proxy_cache_bypass $http_upgrade;
+
+	#merge_slashes off;
+	location / {
+	    proxy_pass http://localhost:5020;
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header X-Cache-Status $upstream_cache_status;
+	}
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/goldenmangas.lol/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/goldenmangas.lol/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+	server_name goldenmangas.xyz www.goldenmangas.xyz;
+	gzip on;
+	gzip_proxied any;
+	gzip_comp_level 4;
+	gzip_types text/css application/javascript image/svg+xml;
+
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection 'upgrade';
+	proxy_set_header Host $host;
+	proxy_cache_bypass $http_upgrade;
+
+	#merge_slashes off;
+	location / {
+	    proxy_pass http://localhost:5021;
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header X-Cache-Status $upstream_cache_status;
+	}
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/goldenmangas.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/goldenmangas.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+	server_name mangaupdate.top www.mangaupdate.top;
+	gzip on;
+	gzip_proxied any;
+	gzip_comp_level 4;
+	gzip_types text/css application/javascript image/svg+xml;
+
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection 'upgrade';
+	proxy_set_header Host $host;
+	proxy_cache_bypass $http_upgrade;
+
+	#merge_slashes off;
+	location / {
+	    proxy_pass http://localhost:5022;
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header X-Cache-Status $upstream_cache_status;
+	}
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/mangaupdate.top/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/mangaupdate.top/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+
+server {
+	server_name 1stkissmanga.us www.1stkissmanga.us;
+	gzip on;
+	gzip_proxied any;
+	gzip_comp_level 4;
+	gzip_types text/css application/javascript image/svg+xml;
+
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection 'upgrade';
+	proxy_set_header Host $host;
+	proxy_cache_bypass $http_upgrade;
+	
+	# Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	#merge_slashes off;
+	location / {
+	    proxy_pass http://localhost:5046;
+		add_header 'Access-Control-Allow-Origin' '*';
+		add_header X-Cache-Status $upstream_cache_status;
+
+		#proxy_cache STATIC;
+		#proxy_ignore_headers Cache-Control;
+		#proxy_cache_valid 60m;
+	}
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/1stkissmanga.us/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/1stkissmanga.us/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+    if ($host = www.unionmanga.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = unionmanga.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name unionmanga.xyz www.unionmanga.xyz;
+    listen 80;
+    return 404; # managed by Certbot
+}
+server {
+    if ($host = www.1stkissmanga.us) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = 1stkissmanga.us) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name 1stkissmanga.us www.1stkissmanga.us;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = api.unionmanga.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    server_name   api.unionmanga.xyz;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+}
+server {
+    if ($host = www.mangakatana.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = mangakatana.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name mangakatana.xyz www.mangakatana.xyz;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.yaoi-chan.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = yaoi-chan.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name yaoi-chan.xyz www.yaoi-chan.xyz;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.mangahere.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = mangahere.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name mangahere.lol www.mangahere.lol;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.pandamanga.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = pandamanga.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name pandamanga.xyz www.pandamanga.xyz;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.kumascans.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = kumascans.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name kumascans.xyz www.kumascans.xyz;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+
+server {
+    if ($host = www.mangareborn.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = mangareborn.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name mangareborn.xyz www.mangareborn.xyz;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.starmanga.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = starmanga.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name starmanga.xyz www.starmanga.xyz;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.mangareader.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = mangareader.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name mangareader.lol www.mangareader.lol;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.unionleitor.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = unionleitor.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name unionleitor.lol www.unionleitor.lol;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.unionmanga.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = unionmanga.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name unionmanga.lol www.unionmanga.lol;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.mangakakalot.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = mangakakalot.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name mangakakalot.lol www.mangakakalot.lol;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.pandamanga.net) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = pandamanga.net) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name pandamanga.net www.pandamanga.net;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.247manga.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = 247manga.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name 247manga.xyz www.247manga.xyz;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.mangalib.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = mangalib.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name mangalib.lol www.mangalib.lol;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.mangabuddy.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = mangabuddy.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name mangabuddy.lol www.mangabuddy.lol;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.mangadino.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = mangadino.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name mangadino.lol www.mangadino.lol;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.unionmangas.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = unionmangas.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name unionmangas.xyz www.unionmangas.xyz;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.bibimanga.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = bibimanga.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name bibimanga.xyz www.bibimanga.xyz;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+
+server {
+    if ($host = www.mangatopnew.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = mangatopnew.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name mangatopnew.xyz www.mangatopnew.xyz;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.goldenmangas.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = goldenmangas.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name goldenmangas.lol www.goldenmangas.lol;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.goldenmangas.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = goldenmangas.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name goldenmangas.xyz www.goldenmangas.xyz;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.mangaupdate.top) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = mangaupdate.top) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name mangaupdate.top www.mangaupdate.top;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}

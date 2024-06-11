@@ -1,0 +1,43 @@
+{
+  "key_type_defalt": "manga-en",
+  "key_lang_defalt": "en",
+  "domain_name": "localhost:7777",
+  "brand_name": "Panda Manga",
+  "brand_name_other": "Panda Manga",
+  "image_bg": "/assets/backgaroud/bg.jpg",
+  "lang_seo": "en",
+  "analytics_key": "G-78SKN2D4KW",
+  "bing_key": "b56e1003fc7744ebb65e65319b8dbb4c",
+  "google_key": "",
+  "monetag_key": "31747524bb2c8970e88f064755fa473f",
+  "ads": [
+    {
+      "key": "yandex",
+      "value": "R-A-7005229-1",
+      "unit": "",
+      "tempAds": "pandamanga.xyz",
+      "type": "baner"
+    },
+    {
+      "key": "adsterra",
+      "value": "807848593c1dc36e9d8906124c5d8acc",
+      "unit": "",
+      "tempAds": "pandamanga.xyz",
+      "type": "baner"
+    },
+    {
+      "key": "monetag-popup",
+      "value": "popup-1",
+      "unit": "",
+      "tempAds": "pandamanga.xyz",
+      "type": "popup"
+    },
+    {
+      "key": "monetag-inital",
+      "value": "//ophoacit.com/1?z=5103425",
+      "unit": "",
+      "tempAds": "pandamanga.xyz",
+      "type": "popup"
+    }
+  ]
+}

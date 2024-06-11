@@ -1,0 +1,3370 @@
+server {
+	listen 80;
+	listen [::]:80;
+
+}
+
+server {
+      server_name mangakatana.xyz www.mangakatana.xyz;
+	  gzip on;
+	  gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4001;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4001;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:4001;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:4001;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/mangakatana.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/mangakatana.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+
+server {
+    server_name   api.mangakatana.xyz;
+	location / {
+        proxy_pass         http://localhost:4015;
+        proxy_http_version 1.1;
+        proxy_set_header   Upgrade $http_upgrade;
+        proxy_set_header   Connection "upgrade";
+        proxy_set_header   Host $host;
+        proxy_cache_bypass $http_upgrade;
+        proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+        
+        #if ($request_method = 'POST') {
+        #    add_header 'Access-Control-Allow-Origin' '*';
+        #}
+        proxy_cache my_cache;
+        proxy_cache_revalidate on;
+        proxy_cache_min_uses 3;
+        proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;
+        proxy_cache_background_update on;
+        proxy_cache_lock on;
+    }
+    underscores_in_headers on;
+    gzip on;
+    gzip_vary on;
+    gzip_types application/javascript application/rss+xml application/xhtml+xml application/xml text/css text/javascript text/plain text/xml application/json;
+
+    listen 80;
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/api.mangakatana.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/api.mangakatana.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+
+server {
+      server_name manga-raw.lol www.manga-raw.lol;
+	  gzip on;
+	  gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4002;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4002;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:4002;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:4002;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/manga-raw.lol/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/manga-raw.lol/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+      server_name mangasub.xyz www.mangasub.xyz;
+	  gzip on;
+	  gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4003;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4003;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:4003;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:4003;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/mangasub.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/mangasub.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+      server_name manga16plus.xyz www.manga16plus.xyz;
+	  gzip on;
+	  gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4004;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4004;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:4004;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:4004;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/manga16plus.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/manga16plus.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+      server_name manwa.lol www.manwa.lol;
+	  gzip on;
+	  gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4005;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4005;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:4005;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:4005;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/manwa.lol/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/manwa.lol/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+      server_name scan-manga.lol www.scan-manga.lol;
+	  gzip on;
+	  gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4006;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4006;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:4006;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:4006;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/scan-manga.lol/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/scan-manga.lol/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+      server_name mangaforest.xyz www.mangaforest.xyz;
+	  gzip on;
+	  gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4007;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4007;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:4007;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:4007;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/mangaforest.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/mangaforest.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+      server_name mangaking.xyz www.mangaking.xyz;
+	  gzip on;
+	  gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4008;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4008;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:4008;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:4008;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/mangaking.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/mangaking.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+      server_name manga-scan.xyz www.manga-scan.xyz;
+	  gzip on;
+	  gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4009;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4009;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:4009;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:4009;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/manga-scan.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/manga-scan.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+      server_name manga-owl.xyz www.manga-owl.xyz;
+	  gzip on;
+	  gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4010;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4010;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:4010;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:4010;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/manga-owl.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/manga-owl.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+      server_name mangaclash.lol www.mangaclash.lol;
+	  gzip on;
+	  gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4011;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4011;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:4011;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:4011;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/mangaclash.lol/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/mangaclash.lol/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+      server_name mangadino.lol www.mangadino.lol;
+	  gzip on;
+	  gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4012;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4012;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:4012;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:4012;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/mangadino.lol/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/mangadino.lol/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+      server_name niceoppai.xyz www.niceoppai.xyz;
+	  gzip on;
+	  gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4013;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4013;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:4013;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:4013;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/niceoppai.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/niceoppai.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+      server_name manga1001.lol www.manga1001.lol;
+	  gzip on;
+	  gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4014;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4014;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:4014;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:4014;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/manga1001.lol/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/manga1001.lol/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+      server_name web.niceoppai.xyz;
+	  gzip on;
+	  gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4015;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4015;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:4015;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:4015;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+
+    listen 80;
+}
+
+
+server {
+      server_name unionmangas.xyz www.unionmangas.xyz;
+      gzip on;
+	  gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5030;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5030;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:5030;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:5030;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+
+    server_tokens off;
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/unionmangas.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/unionmangas.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+    server_name pandamanga.xyz www.pandamanga.xyz;
+    gzip on;
+ gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5023;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5023;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:5023;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:5023;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/pandamanga.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/pandamanga.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+	server_name mangaplaza.xyz www.mangaplaza.xyz;
+    gzip on;
+ gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4005;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4005;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:4005;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:4005;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+    server_tokens off;
+
+    listen 80;
+}
+
+server {
+	server_name mangahere.lol www.mangahere.lol;
+    gzip on;
+ gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4031;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4031;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:4031;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:4031;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+    server_tokens off;
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/mangahere.lol/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/mangahere.lol/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+	server_name readcomicsonline.lol www.readcomicsonline.lol;
+    gzip on;
+ gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4009;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4009;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:4009;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:4009;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+    server_tokens off;
+
+    listen 80;
+}
+
+server {
+	server_name comiconlinefree.xyz www.comiconlinefree.xyz;
+    gzip on;
+ gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4010;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4010;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:4010;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:4010;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+    server_tokens off;
+
+    listen 80;
+
+}
+
+server {
+	server_name viewcomics.xyz www.viewcomics.xyz;
+   gzip on;
+ gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4011;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4011;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:4011;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:4011;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+    server_tokens off;
+
+    listen 80;
+}
+
+server {
+	server_name marvel.lol www.marvel.lol;
+   gzip on;
+ gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4012;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4012;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:4012;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:4012;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+    server_tokens off;
+
+    listen 80;
+
+}
+
+
+server {
+	server_name mangabtt.xyz www.mangabtt.xyz;
+    gzip on;
+	gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4024;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4024;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:4024;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:4024;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+    server_tokens off;
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/mangabtt.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/mangabtt.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+	server_name mangabtt.lol www.mangabtt.lol;
+    gzip on;
+	gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4025;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4025;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:4025;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:4025;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+    server_tokens off;
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/mangabtt.lol/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/mangabtt.lol/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+	server_name mangaupdates.xyz www.mangaupdates.xyz;
+    gzip on;
+	gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4030;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4030;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:4030;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:4030;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+    server_tokens off;
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/mangaupdates.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/mangaupdates.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+	server_name mangaupdates.lol www.mangaupdates.lol;
+    gzip on;
+	gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4027;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4027;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:4027;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:4027;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+    server_tokens off; 
+
+    listen 80;
+}
+
+server {
+	server_name mangaupdate.xyz www.mangaupdate.xyz;
+    gzip on;
+	gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4028;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:4028;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:4028;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:4028;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+    server_tokens off;
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/mangaupdate.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/mangaupdate.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+    server_name mymangalist.me www.mymangalist.me;
+    gzip on;
+ gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5097;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5097;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:5097;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:5097;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/mymangalist.me/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/mymangalist.me/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+      server_name mymangalist.lol www.mymangalist.lol;
+	  gzip on;
+	  gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5096;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5096;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:5096;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:5096;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/mymangalist.lol/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/mymangalist.lol/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+      server_name myreadingmanga.lol www.myreadingmanga.lol;
+      gzip on;
+      gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5094;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5094;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:5094;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:5094;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/myreadingmanga.lol/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/myreadingmanga.lol/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+      server_name remanga.xyz www.remanga.xyz;
+      gzip on;
+      gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5099;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5099;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:5099;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:5099;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/remanga.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/remanga.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+
+server {
+    server_name manga-chan.xyz www.manga-chan.xyz;
+   gzip on;
+ gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5085;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5085;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:5085;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:5085;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+
+
+    listen 80;
+
+
+}
+
+server {
+    server_name mangachill.xyz www.mangachill.xyz;
+   gzip on;
+ gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5208;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5208;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:5208;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:5208;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/mangachill.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/mangachill.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+    server_name mangapuma.lol www.mangapuma.lol;
+    gzip on;
+	gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5209;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5209;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:5209;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:5209;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/mangapuma.lol/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/mangapuma.lol/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+    server_name kissmanga.autos www.kissmanga.autos;
+  gzip on;
+ gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5201;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5201;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:5201;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:5201;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/kissmanga.autos/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/kissmanga.autos/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+    server_name mymanga.lol www.mymanga.lol;
+ gzip on;
+ gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5211;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5211;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:5211;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:5211;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/mymanga.lol/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/mymanga.lol/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+    server_name s2manga.lol www.s2manga.lol;
+   gzip on;
+ gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5212;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5212;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:5212;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:5212;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/s2manga.lol/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/s2manga.lol/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+    server_name welovemanga.lol www.welovemanga.lol;
+    gzip on;
+ gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5215;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5215;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:5215;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:5215;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/welovemanga.lol/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/welovemanga.lol/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+    server_name welovemanga.xyz www.welovemanga.xyz;
+   gzip on;
+ gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5216;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5216;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:5216;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:5216;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/welovemanga.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/welovemanga.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+    server_name yesmanga.lol www.yesmanga.lol;
+	  gzip on;
+	  gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5103;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5103;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:5103;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:5103;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/yesmanga.lol/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/yesmanga.lol/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+    server_name yesmanga.xyz www.yesmanga.xyz;
+	  gzip on;
+	  gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5101;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5101;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:5101;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:5101;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/yesmanga.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/yesmanga.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+    server_name yesmangas.lol www.yesmangas.lol;
+	  gzip on;
+	  gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5104;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5104;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:5104;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:5104;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/yesmangas.lol/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/yesmangas.lol/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+    server_name yesmangas.xyz www.yesmangas.xyz;
+	  gzip on;
+	  gzip_vary on;
+	  gzip_proxied any;
+	  gzip_comp_level 4;
+	  gzip_types text/css application/javascript image/svg+xml;
+
+	  proxy_http_version 1.1;
+	  proxy_set_header Upgrade $http_upgrade;
+	  proxy_set_header Connection 'upgrade';
+	  proxy_set_header Host $host;
+	  proxy_cache_bypass $http_upgrade;
+
+	  # Imgproxy paths can contain multiple slashes (e.g. local:///image/file.jpg)
+	  merge_slashes off;
+	 location /img/ {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5102;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /_next/static {
+		proxy_cache STATIC;
+		proxy_pass http://localhost:5102;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+	  location /static {
+		proxy_cache STATIC;
+
+		# Ignore cache control for Next.js assets from /static, re-validate after 60m
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid 60m;
+
+		proxy_pass http://localhost:5102;
+
+		# For testing cache - remove before deploying to production
+		add_header X-Cache-Status $upstream_cache_status;
+	  }
+
+    location / {
+        proxy_pass    http://localhost:5102;
+		add_header 'Access-Control-Allow-Origin' '*';
+    }
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/yesmangas.xyz/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/yesmangas.xyz/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+
+server {
+    if ($host = www.mangakatana.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = mangakatana.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+      server_name mangakatana.xyz www.mangakatana.xyz;
+	listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+
+server {
+    if ($host = www.manga-raw.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = manga-raw.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+      server_name manga-raw.lol www.manga-raw.lol;
+	listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+
+server {
+    if ($host = www.mangasub.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = mangasub.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+      server_name mangasub.xyz www.mangasub.xyz;
+	listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.manga16plus.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = manga16plus.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+      server_name manga16plus.xyz www.manga16plus.xyz;
+	listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.manwa.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = manwa.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+      server_name manwa.lol www.manwa.lol;
+	listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.scan-manga.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = scan-manga.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+      server_name scan-manga.lol www.scan-manga.lol;
+	listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.mangaforest.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = mangaforest.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+      server_name mangaforest.xyz www.mangaforest.xyz;
+	listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.mangaking.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = mangaking.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+      server_name mangaking.xyz www.mangaking.xyz;
+	listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.manga-scan.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = manga-scan.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+      server_name manga-scan.xyz www.manga-scan.xyz;
+	listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.manga-owl.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = manga-owl.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+      server_name manga-owl.xyz www.manga-owl.xyz;
+	listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.mangaclash.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = mangaclash.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+      server_name mangaclash.lol www.mangaclash.lol;
+	listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.mangadino.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = mangadino.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+      server_name mangadino.lol www.mangadino.lol;
+	listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.niceoppai.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = niceoppai.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+      server_name niceoppai.xyz www.niceoppai.xyz;
+	listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = www.manga1001.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = manga1001.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+      server_name manga1001.lol www.manga1001.lol;
+	listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+
+server {
+    if ($host = www.mangahere.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = mangahere.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name mangahere.lol www.mangahere.lol;
+
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+
+
+server {
+    if ($host = www.mangabtt.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = mangabtt.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name mangabtt.xyz www.mangabtt.xyz; 
+
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+
+server {
+    if ($host = www.mangabtt.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = mangabtt.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name mangabtt.lol www.mangabtt.lol; 
+
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+
+server {
+    if ($host = www.mangaupdates.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = mangaupdates.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name mangaupdates.xyz www.mangaupdates.xyz; 
+
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+
+server {
+    if ($host = www.pandamanga.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = pandamanga.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    server_name pandamanga.xyz www.pandamanga.xyz;
+
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+
+
+server {
+    if ($host = www.unionmangas.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = unionmangas.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+      server_name unionmangas.xyz www.unionmangas.xyz;
+
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+
+server {
+    if ($host = www.mangaupdate.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = mangaupdate.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name mangaupdate.xyz www.mangaupdate.xyz; 
+
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+
+server {
+    if ($host = www.mymangalist.me) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = mymangalist.me) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    server_name mymangalist.me www.mymangalist.me;
+
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+
+server {
+    if ($host = www.mymangalist.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = mymangalist.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+      server_name mymangalist.lol www.mymangalist.lol; 
+
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+
+server {
+    if ($host = www.myreadingmanga.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = myreadingmanga.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+      server_name myreadingmanga.lol www.myreadingmanga.lol;
+
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+
+server {
+    if ($host = www.remanga.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = remanga.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+      server_name remanga.xyz www.remanga.xyz;
+
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+
+server {
+    if ($host = www.kissmanga.autos) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = kissmanga.autos) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    server_name kissmanga.autos www.kissmanga.autos;
+
+
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+
+server {
+    if ($host = www.mangachill.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = mangachill.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    server_name mangachill.xyz www.mangachill.xyz;
+
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+
+server {
+    if ($host = www.mangapuma.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = mangapuma.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    server_name mangapuma.lol www.mangapuma.lol;
+
+
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+
+server {
+    if ($host = www.mymanga.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = mymanga.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    server_name mymanga.lol www.mymanga.lol;
+
+
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+
+server {
+    if ($host = www.s2manga.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = s2manga.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    server_name s2manga.lol www.s2manga.lol;
+
+
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+
+server {
+    if ($host = www.welovemanga.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = welovemanga.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    server_name welovemanga.lol www.welovemanga.lol;
+
+
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+
+server {
+    if ($host = www.welovemanga.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = welovemanga.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    server_name welovemanga.xyz www.welovemanga.xyz;
+
+
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+
+server {
+    if ($host = www.yesmanga.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = yesmanga.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    server_name yesmanga.lol www.yesmanga.lol;
+
+
+
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+
+server {
+    if ($host = www.yesmanga.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = yesmanga.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    server_name yesmanga.xyz www.yesmanga.xyz;
+
+
+
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+
+server {
+    if ($host = www.yesmangas.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = yesmangas.lol) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    server_name yesmangas.lol www.yesmangas.lol;
+
+
+
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}
+
+server {
+    if ($host = www.yesmangas.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = yesmangas.xyz) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    server_name yesmangas.xyz www.yesmangas.xyz;
+
+
+
+    listen 80;
+    return 404; # managed by Certbot
+
+
+
+
+}

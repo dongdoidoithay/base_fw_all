@@ -1,0 +1,276 @@
+{
+  "data_menu_lang": [
+    {
+      "key_lang": "en",
+      "menu_lang": [
+        {
+          "key_type": "pageManga",
+          "lable": "Manga"
+        },
+        {
+          "key_type": "pageNovel",
+          "lable": "Novel"
+        },
+        {
+          "key_type": "manga-en",
+          "lable": "Manga Scan"
+        },
+        {
+          "key_type": "comic-en",
+          "lable": "Comic & DC"
+        },
+        {
+          "key_type": "manga-br",
+          "lable": "Manga (Português)"
+        },
+        {
+          "key_type": "manga-ru",
+          "lable": "Manga (Russian)"
+        },
+        {
+          "key_type": "hentai-ru",
+          "lable": "Manga 18+ (Russian)"
+        },
+        {
+          "key_type": "yaoi-ru",
+          "lable": "Manga Yaoi (Russian)"
+        },
+        {
+          "key_type": "novel-en",
+          "lable": "Novels (English)"
+        },
+        {
+          "key_type": "anime-en",
+          "lable": "Anime & Movies"
+        }
+      ],
+      "select_type": [
+        {
+          "key_type": "manga-en",
+          "lable": "(ME) Manga Scan"
+        },
+        {
+          "key_type": "manga-br",
+          "lable": "(MP) Manga Português"
+        },
+        {
+          "key_type": "comic-en",
+          "lable": "(CM) Comic & DC"
+        },
+        {
+          "key_type": "manga-ru",
+          "lable": "(MR) Manga Russian"
+        },
+        {
+          "key_type": "hentai-ru",
+          "lable": "(HR) Manga 18+ Russian"
+        },
+        {
+          "key_type": "yaoi-ru",
+          "lable": "(YA) Manga Yaoi Russian"
+        },
+        {
+          "key_type": "anime-en",
+          "lable": "(AE) Anime & Movies"
+        }
+      ]
+    },
+    {
+      "key_lang": "ru",
+      "menu_lang": [
+        {
+          "key_type": "pageManga",
+          "lable": "Manga"
+        },
+        {
+          "key_type": "pageNovel",
+          "lable": "Novel"
+        },
+        {
+          "key_type": "manga-en",
+          "lable": "Manga Scan"
+        },
+        {
+          "key_type": "comic-en",
+          "lable": "Comic & DC"
+        },
+        {
+          "key_type": "manga-br",
+          "lable": "Manga (Português)"
+        },
+        {
+          "key_type": "manga-ru",
+          "lable": "Manga (Russian)"
+        },
+        {
+          "key_type": "hentai-ru",
+          "lable": "Manga 18+ (Russian)"
+        },
+        {
+          "key_type": "yaoi-ru",
+          "lable": "Manga Yaoi (Russian)"
+        },
+        {
+          "key_type": "novel-en",
+          "lable": "Novels (English)"
+        },
+        {
+          "key_type": "anime-en",
+          "lable": "Anime & Movies"
+        }
+      ],
+      "select_type": [
+        {
+          "key_type": "manga-en",
+          "lable": "(ME) Manga Scan"
+        },
+        {
+          "key_type": "manga-br",
+          "lable": "(MP) Manga Português"
+        },
+        {
+          "key_type": "comic-en",
+          "lable": "(CM) Comic & DC"
+        },
+        {
+          "key_type": "manga-ru",
+          "lable": "(MR) Manga Russian"
+        },
+        {
+          "key_type": "hentai-ru",
+          "lable": "(HR) Manga 18+ Russian"
+        },
+        {
+          "key_type": "yaoi-ru",
+          "lable": "(YA) Manga Yaoi Russian"
+        },
+        {
+          "key_type": "anime-en",
+          "lable": "(AE) Anime & Movies"
+        }
+      ]
+    },
+    {
+      "key_lang": "br",
+      "menu_lang": [
+        {
+          "key_type": "pageManga",
+          "lable": "Manga"
+        },
+        {
+          "key_type": "pageNovel",
+          "lable": "Novel"
+        },
+        {
+          "key_type": "manga-en",
+          "lable": "Manga Scan"
+        },
+        {
+          "key_type": "comic-en",
+          "lable": "Comic & DC"
+        },
+        {
+          "key_type": "manga-br",
+          "lable": "Manga (Português)"
+        },
+        {
+          "key_type": "manga-ru",
+          "lable": "Manga (Russian)"
+        },
+        {
+          "key_type": "hentai-ru",
+          "lable": "Manga 18+ (Russian)"
+        },
+        {
+          "key_type": "yaoi-ru",
+          "lable": "Manga Yaoi (Russian)"
+        },
+        {
+          "key_type": "novel-en",
+          "lable": "Novels (English)"
+        },
+        {
+          "key_type": "anime-en",
+          "lable": "Anime & Movies"
+        }
+      ],
+      "select_type": [
+        {
+          "key_type": "manga-en",
+          "lable": "(ME) Manga Scan"
+        },
+        {
+          "key_type": "manga-br",
+          "lable": "(MP) Manga Português"
+        },
+        {
+          "key_type": "comic-en",
+          "lable": "(CM) Comic & DC"
+        },
+        {
+          "key_type": "manga-ru",
+          "lable": "(MR) Manga Russian"
+        },
+        {
+          "key_type": "hentai-ru",
+          "lable": "(HR) Manga 18+ Russian"
+        },
+        {
+          "key_type": "yaoi-ru",
+          "lable": "(YA) Manga Yaoi Russian"
+        },
+        {
+          "key_type": "anime-en",
+          "lable": "(AE) Anime & Movies"
+        }
+      ]
+    }
+  ],
+  "data_menu": [
+    {
+      "Path": "#manga",
+      "key_type": "pageManga",
+      "index": 1,
+      "child": [
+        {
+          "key_type": "manga-en",
+          "index": 1,
+          "child": []
+        },
+        {
+          "key_type": "manga-br",
+          "index": 2,
+          "child": []
+        },
+        {
+          "key_type": "manga-ru",
+          "index": 3,
+          "child": []
+        },
+        {
+          "key_type": "hentai-ru",
+          "index": 4,
+          "child": []
+        },
+        {
+          "key_type": "yaoi-ru",
+          "index": 5,
+          "child": []
+        }
+
+      ]
+    },
+    {
+      "Path": "",
+      "key_type": "comic-en",
+      "index": 2,
+      "child": []
+    },
+    {
+      "Path": "",
+      "key_type": "anime-en",
+      "index": 3,
+      "child": []
+    }
+  ]
+}

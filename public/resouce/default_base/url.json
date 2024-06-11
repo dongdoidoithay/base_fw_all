@@ -1,0 +1,326 @@
+{
+  "data_type": [
+    {
+      "key_type": "manga-en",
+      "key_lang": "en",
+      "key_mode": "manga"
+    },
+    {
+      "key_type": "manga-br",
+      "key_lang": "br",
+      "key_mode": "manga"
+    },
+    {
+      "key_type": "manga-it",
+      "key_lang": "it",
+      "key_mode": "manga"
+    },
+    {
+      "key_type": "manga-es",
+      "key_lang": "es",
+      "key_mode": "manga"
+    },
+    {
+      "key_type": "manga-fr",
+      "key_lang": "fr",
+      "key_mode": "manga"
+    },
+    {
+      "key_type": "manga-de",
+      "key_lang": "de",
+      "key_mode": "manga"
+    },
+    {
+      "key_type": "manga-ru",
+      "key_lang": "ru",
+      "key_mode": "manga"
+    },
+
+
+    {
+      "key_type": "novel-en",
+      "key_lang": "en",
+      "key_mode": "novel"
+    },
+    {
+      "key_type": "novel-br",
+      "key_lang": "br",
+      "key_mode": "novel"
+    },
+    {
+      "key_type": "novel-it",
+      "key_lang": "it",
+      "key_mode": "novel"
+    },
+    {
+      "key_type": "novel-es",
+      "key_lang": "es",
+      "key_mode": "novel"
+    },
+    {
+      "key_type": "novel-fr",
+      "key_lang": "fr",
+      "key_mode": "novel"
+    },
+    {
+      "key_type": "novel-de",
+      "key_lang": "de",
+      "key_mode": "novel"
+    },
+    {
+      "key_type": "novel-ru",
+      "key_lang": "ru",
+      "key_mode": "manga"
+    },
+
+    {
+      "key_type": "comic",
+      "key_lang": "en",
+      "key_mode": "manga"
+    }
+
+  ],
+  "data_uri": [
+    {
+      "key_type": "manga-en",
+      "key_uri": "v1/manga-en",
+      "prefix_url_api": "/manga",
+      "prefix_param_type": "Manga",
+      "prefix_param_lang": "en",
+      "name_type": "Manga Scan",
+      "prefix_genres": "option/manga-en/genres",
+      "prefix_auth": "option/manga-en/auth",
+      "prefix_type": "option/manga-en/type",
+      "prefix_year": "option/manga-en/year",
+      "prefix_status": "option/manga-en/status",
+      "start_info": "",
+      "start_view": ""
+    },
+    {
+      "key_type": "manga-br",
+      "key_uri": "v1/manga-br",
+      "key_type_uri": "manga-br",
+      "prefix_url_api": "/v2",
+      "prefix_param_type": "Manga",
+      "prefix_param_lang": "br",
+      "name_type": "Manga Português",
+      "prefix_genres": "option/manga-br/genres",
+      "prefix_auth": "option/manga-br/auth",
+      "prefix_type": "option/manga-br/type",
+      "prefix_year": "option/manga-br/year",
+      "prefix_status": "option/manga-br/status",
+      "start_info": "",
+      "start_view": "chapter-"
+    },
+    {
+      "key_type": "manga-it",
+      "key_uri": "v1/manga-it",
+      "key_type_uri": "manga-it",
+      "prefix_url_api": "/v2",
+      "prefix_param_type": "Manga",
+      "prefix_param_lang": "it",
+      "name_type": "Manga Italiano",
+      "prefix_genres": "option/manga-it/genres",
+      "prefix_auth": "option/manga-it/auth",
+      "prefix_type": "option/manga-it/type",
+      "prefix_year": "option/manga-it/year",
+      "prefix_status": "option/manga-it/status",
+      "start_info": "",
+      "start_view": "chapter-"
+    },
+    {
+      "key_type": "manga-es",
+      "key_uri": "v1/manga-es",
+      "key_type_uri": "manga-es",
+      "prefix_url_api": "/v2",
+      "prefix_param_type": "Manga",
+      "prefix_param_lang": "es",
+      "name_type": "Manga Español",
+      "prefix_genres": "option/manga-es/genres",
+      "prefix_auth": "option/manga-es/auth",
+      "prefix_type": "option/manga-es/type",
+      "prefix_year": "option/manga-es/year",
+      "prefix_status": "option/manga-es/status",
+      "start_info": "",
+      "start_view": "chapter-"
+    },
+    {
+      "key_type": "manga-fr",
+      "key_uri": "v1/manga-fr",
+      "key_type_uri": "manga-fr",
+      "prefix_url_api": "/v2",
+      "prefix_param_type": "Manga",
+      "prefix_param_lang": "fr",
+      "name_type": "Manga Français",
+      "prefix_genres": "option/manga-fr/genres",
+      "prefix_auth": "option/manga-fr/auth",
+      "prefix_type": "option/manga-fr/type",
+      "prefix_year": "option/manga-fr/year",
+      "prefix_status": "option/manga-fr/status",
+      "start_info": "",
+      "start_view": "chapter-"
+    },
+    {
+      "key_type": "manga-de",
+      "key_uri": "v1/manga-de",
+      "key_type_uri": "manga-de",
+      "prefix_url_api": "/v2",
+      "prefix_param_type": "Manga",
+      "prefix_param_lang": "de",
+      "name_type": "Manga Deutsch",
+      "prefix_genres": "option/manga-de/genres",
+      "prefix_auth": "option/manga-de/auth",
+      "prefix_type": "option/manga-de/type",
+      "prefix_year": "option/manga-de/year",
+      "prefix_status": "option/manga-de/status",
+      "start_info": "",
+      "start_view": "chapter-"
+    },
+    {
+      "key_type": "manga-ru",
+      "key_uri": "v1/manga-ru",
+      "key_type_uri": "manga-ru",
+      "prefix_url_api": "/v2",
+      "prefix_param_type": "Manga",
+      "prefix_param_lang": "ru",
+      "name_type": "Manga Русский",
+      "prefix_genres": "option/manga-ru/genres",
+      "prefix_auth": "option/manga-ru/auth",
+      "prefix_type": "option/manga-ru/type",
+      "prefix_year": "option/manga-ru/year",
+      "prefix_status": "option/manga-ru/status",
+      "start_info": "",
+      "start_view": "chapter-"
+    },
+
+    {
+      "key_type": "novel-en",
+      "key_uri": "v1/novel-en",
+      "key_type_uri": "novel-en",
+      "prefix_url_api": "/v2",
+      "prefix_param_type": "Novel",
+      "prefix_param_lang": "en",
+      "name_type": "Novel Light",
+      "prefix_genres": "option/novel-en/genres",
+      "prefix_auth": "option/novel-en/auth",
+      "prefix_type": "option/novel-en/type",
+      "prefix_year": "option/novel-en/year",
+      "prefix_status": "option/novel-en/status",
+      "start_info": "",
+      "start_view": "volume-"
+    },
+    {
+      "key_type": "novel-br",
+      "key_uri": "v1/novel-br",
+      "key_type_uri": "novel-br",
+      "prefix_url_api": "/v2",
+      "prefix_param_type": "Novel",
+      "prefix_param_lang": "br",
+      "name_type": "Novel Português",
+      "prefix_genres": "option/novel-br/genres",
+      "prefix_auth": "option/novel-br/auth",
+      "prefix_type": "option/novel-br/type",
+      "prefix_year": "option/novel-br/year",
+      "prefix_status": "option/novel-br/status",
+      "start_info": "",
+      "start_view": "volume-"
+    },
+    {
+      "key_type": "novel-it",
+      "key_uri": "v1/novel-it",
+      "key_type_uri": "novel-it",
+      "prefix_url_api": "/v2",
+      "prefix_param_type": "Novel",
+      "prefix_param_lang": "it",
+      "name_type": "Novel Italiano",
+      "prefix_genres": "option/novel-it/genres",
+      "prefix_auth": "option/novel-it/auth",
+      "prefix_type": "option/novel-it/type",
+      "prefix_year": "option/novel-it/year",
+      "prefix_status": "option/novel-it/status",
+      "start_info": "",
+      "start_view": "volume-"
+    },
+    {
+      "key_type": "novel-es",
+      "key_uri": "v1/novel-es",
+      "key_type_uri": "novel-es",
+      "prefix_url_api": "/v2",
+      "prefix_param_type": "Novel",
+      "prefix_param_lang": "es",
+      "name_type": "Novel Español",
+      "prefix_genres": "option/novel-es/genres",
+      "prefix_auth": "option/novel-es/auth",
+      "prefix_type": "option/novel-es/type",
+      "prefix_year": "option/novel-es/year",
+      "prefix_status": "option/novel-es/status",
+      "start_info": "",
+      "start_view": "volume-"
+    },
+    {
+      "key_type": "novel-fr",
+      "key_uri": "v1/novel-fr",
+      "key_type_uri": "novel-fr",
+      "prefix_url_api": "/v2",
+      "prefix_param_type": "Novel",
+      "prefix_param_lang": "fr",
+      "name_type": "Novel Français",
+      "prefix_genres": "option/novel-fr/genres",
+      "prefix_auth": "option/novel-fr/auth",
+      "prefix_type": "option/novel-fr/type",
+      "prefix_year": "option/novel-fr/year",
+      "prefix_status": "option/novel-fr/status",
+      "start_info": "",
+      "start_view": "volume-"
+    },
+    {
+      "key_type": "novel-de",
+      "key_uri": "v1/novel-de",
+      "key_type_uri": "novel-de",
+      "prefix_url_api": "/v2",
+      "prefix_param_type": "Novel",
+      "prefix_param_lang": "de",
+      "name_type": "Novel Deutsch",
+      "prefix_genres": "option/novel-de/genres",
+      "prefix_auth": "option/novel-de/auth",
+      "prefix_type": "option/novel-de/type",
+      "prefix_year": "option/novel-de/year",
+      "prefix_status": "option/novel-de/status",
+      "start_info": "",
+      "start_view": "volume-"
+    },
+    {
+      "key_type": "novel-ru",
+      "key_uri": "v1/novel-ru",
+      "key_type_uri": "novel-ru",
+      "prefix_url_api": "/v2",
+      "prefix_param_type": "Novel",
+      "prefix_param_lang": "ru",
+      "name_type": "Novel Русский",
+      "prefix_genres": "option/novel-ru/genres",
+      "prefix_auth": "option/novel-ru/auth",
+      "prefix_type": "option/novel-ru/type",
+      "prefix_year": "option/novel-ru/year",
+      "prefix_status": "option/novel-ru/status",
+      "start_info": "",
+      "start_view": "volume-"
+    },
+
+
+
+    {
+      "key_type": "anime",
+      "key_uri": "v1/anime",
+      "key_type_uri": "anime",
+      "prefix_url_api": "/en/anime",
+      "name_type": "Videos Anime",
+      "prefix_genres": "option/genres",
+      "prefix_auth": "option/auth",
+      "prefix_type": "option/type",
+      "prefix_year": "option/year",
+      "prefix_status": "option/status",
+      "start_info": "",
+      "start_view": "eps-"
+    }
+  ]
+}

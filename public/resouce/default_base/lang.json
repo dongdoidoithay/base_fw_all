@@ -1,0 +1,624 @@
+{
+  "lang": [
+    {
+      "key_lang": "en",
+      "name": "English",
+      "icon": "/assets/icon/en.png"
+    },
+    {
+      "key_lang": "es",
+      "name": "Español",
+      "icon": "/assets/icon/es.png"
+    },
+    {
+      "key_lang": "br",
+      "name": "Português",
+      "icon": "/assets/icon/br.png"
+    },
+    {
+      "key_lang": "it",
+      "name": "Italiano",
+      "icon": "/assets/icon/it.png"
+    },
+    {
+      "key_lang": "ru",
+      "name": "Русский",
+      "icon": "/assets/icon/ru.png"
+    },
+    {
+      "key_lang": "de",
+      "name": "Deutsch",
+      "icon": "/assets/icon/de.png"
+    },
+    {
+      "key_lang": "fr",
+      "name": "Français",
+      "icon": "/assets/icon/fr.png"
+    }
+  ],
+  "data_lang": [
+    {
+      "key_lang": "en",
+      "data_date": {
+        "lbl_date_now": "now",
+        "lbl_date_minutes": "minutes",
+        "lbl_date_hour": "hour",
+        "lbl_date_yesterday": "yesterday",
+        "lbl_date_years": "years",
+        "lbl_date_months": "months",
+        "lbl_date_days": "days"
+      },
+      "lable_info": {
+        "info_home": "Home",
+        "info_name_other": "Alternative Titles",
+        "info_view": "Views",
+        "info_genres": "Genre",
+        "info_auth": "Author",
+        "info_type": "Type",
+        "info_year": "Date of release",
+        "info_date": "Update on",
+        "info_status": "Status",
+        "info_summary": "Summary",
+        "info_start_read": "Read First",
+        "info_end_read": "Read Last",
+        "info_continue_read": "Read Continue",
+
+        "info_manga": "Manga Detail",
+        "info_chapter_list": "Manga Releases",
+        "info_top_view_list": "Top View",
+        "info_search": "Search",
+        "info_search_place": "Enter number Chapter (Sample 12)",
+        "info_next": "Next",
+        "info_prev": "Prev",
+        "info_ads": "Ads Network",
+
+        "info_subscriber": "Subscriber",
+        "info_action": "Action",
+        "info_add_action": "Add Nominations",
+        "info_read_later": "Add Read Later",
+        "info_favor": "add Favorite",
+        "info_add_collection": "Add to Collection",
+        "info_report": "Send Report",
+
+        "info_login": "Login",
+        "info_register": "Sign up",
+
+        "info_popular": "Popular",
+        "info_top_today": "Top Today",
+        "info_top_week": "Top Week",
+        "info_top_month": "Top Month",
+
+        "comment_lable": "Comments",
+        "comment_info": "We hope you have a good time browsing the comment section!",
+        "comment_input_place": "Join the comment",
+        "comment_button_push": "Post",
+        "comment_button_canel": "Canel",
+        "comment_button_reply": "Reply",
+        "comment_reply_place": "Reply comment",
+        "chapter_list": "Manga release",
+        "chapter_tag": "Manga Tags",
+
+        "notice_req_login_title": "Requires system login",
+        "notice_req_login": "You must log in to the system to use this function",
+        "button_close": "Close",
+        "button_login": "Login",
+        "button_register": "Register",
+        "lable_home_top_day": "Top Day",
+        "lable_home_top_week": "Top Week",
+        "lable_home_top_month": "Top Month"
+
+      },
+      "data_lable": [
+        {
+          "key_mode": "manga",
+          "start_chapter": "Chapter",
+          "start_manga": "Manga"
+        },
+        {
+          "key_mode": "anime",
+          "start_chapter": "Episode",
+          "start_manga": "Anime|Movie"
+        },
+        {
+          "key_mode": "novel",
+          "start_chapter": "Volume",
+          "start_manga": "Novels"
+        }
+      ]
+    },
+    {
+      "key_lang": "es",
+      "data_date": {
+        "lbl_date_now": "now",
+        "lbl_date_minutes": "minutes",
+        "lbl_date_hour": "hour",
+        "lbl_date_yesterday": "yesterday",
+        "lbl_date_years": "years",
+        "lbl_date_months": "months",
+        "lbl_date_days": "days"
+      },
+      "lable_info": {
+        "info_home": "Inicio",
+        "info_name_other": "Títulos Alternativos",
+        "info_view": "Vistas",
+        "info_genres": "Género",
+        "info_auth": "Autor",
+        "info_type": "Tipo",
+        "info_year": "Fecha de lanzamiento",
+        "info_date": "Actualización el",
+        "info_status": "Estado",
+        "info_summary": "Resumen",
+        "info_start_read": "Comenzar a Leer",
+        "info_end_read": "Leer Último",
+        "info_continue_read": "Continuar Leyendo",
+        "info_manga": "Detalle del Manga",
+        "info_chapter_list": "Lanzamientos del Manga",
+        "info_top_view_list": "Más Vistos",
+        "info_search": "Buscar",
+        "info_search_place": "Ingrese el número del capítulo (Ejemplo 12)",
+        "info_next": "Siguiente",
+        "info_prev": "Anterior",
+        "info_ads": "Red de Anuncios",
+        "info_subscriber": "Suscriptor",
+        "info_action": "Acción",
+        "info_add_action": "Agregar Nominaciones",
+        "info_read_later": "Agregar para Leer Después",
+        "info_favor": "Agregar a Favoritos",
+        "info_add_collection": "Agregar a Colección",
+        "info_report": "Enviar Reporte",
+        "info_login": "Iniciar sesión",
+        "info_register": "Registrarse",
+        "info_popular": "Popular",
+        "info_top_today": "Top Hoy",
+        "info_top_week": "Top Semanal",
+        "info_top_month": "Top Mensual",
+        "comment_lable": "Comentarios",
+        "comment_info": "¡Esperamos que disfrutes navegando por la sección de comentarios!",
+        "comment_input_place": "Unirse al comentario",
+        "comment_button_push": "Publicar",
+        "comment_button_canel": "Cancelar",
+        "comment_button_reply": "Responder",
+        "comment_reply_place": "Responder comentario",
+        "chapter_list": "Lanzamientos del Manga",
+        "chapter_tag": "Etiquetas del Manga",
+        "notice_req_login_title": "Requiere inicio de sesión del sistema",
+        "notice_req_login": "Debes iniciar sesión en el sistema para usar esta función",
+        "button_close": "Cerrar",
+        "button_login": "Iniciar sesión",
+        "button_register": "Registrarse",
+        "lable_home_top_day": "Top del Día",
+        "lable_home_top_week": "Top Semanal",
+        "lable_home_top_month": "Top Mensual"
+      },
+      "data_lable": [
+        {
+          "key_mode": "manga",
+          "start_chapter": "Chapter",
+          "start_manga": "Manga"
+        },
+        {
+          "key_mode": "anime",
+          "start_chapter": "Episode",
+          "start_manga": "Anime|Movie"
+        },
+        {
+          "key_mode": "novel",
+          "start_chapter": "Volume",
+          "start_manga": "Novels"
+        }
+      ]
+    },
+    {
+      "key_lang": "br",
+      "data_date": {
+        "lbl_date_now": "now",
+        "lbl_date_minutes": "minutes",
+        "lbl_date_hour": "hour",
+        "lbl_date_yesterday": "yesterday",
+        "lbl_date_years": "years",
+        "lbl_date_months": "months",
+        "lbl_date_days": "days"
+      },
+      "lable_info": {
+        "info_home": "Início",
+        "info_name_other": "Títulos Alternativos",
+        "info_view": "Visualizações",
+        "info_genres": "Género",
+        "info_auth": "Autor",
+        "info_type": "Tipo",
+        "info_year": "Data de Lançamento",
+        "info_date": "Atualizado em",
+        "info_status": "Estado",
+        "info_summary": "Resumo",
+        "info_start_read": "Ler Primeiro",
+        "info_end_read": "Ler Último",
+        "info_continue_read": "Continuar Lendo",
+        "info_manga": "Detalhes do Manga",
+        "info_chapter_list": "Lançamentos do Manga",
+        "info_top_view_list": "Mais Vistos",
+        "info_search": "Buscar",
+        "info_search_place": "Digite o número do capítulo (Exemplo 12)",
+        "info_next": "Próximo",
+        "info_prev": "Anterior",
+        "info_ads": "Rede de Anúncios",
+        "info_subscriber": "Subscritor",
+        "info_action": "Ação",
+        "info_add_action": "Adicionar Nominados",
+        "info_read_later": "Adicionar para Ler Depois",
+        "info_favor": "Adicionar aos Favoritos",
+        "info_add_collection": "Adicionar à Coleção",
+        "info_report": "Enviar Relatório",
+        "info_login": "Iniciar Sessão",
+        "info_register": "Registrar",
+        "info_popular": "Popular",
+        "info_top_today": "Top Hoje",
+        "info_top_week": "Top Semanal",
+        "info_top_month": "Top Mensal",
+        "comment_lable": "Comentários",
+        "comment_info": "Esperamos que você se divirta navegando na seção de comentários!",
+        "comment_input_place": "Junte-se ao comentário",
+        "comment_button_push": "Publicar",
+        "comment_button_canel": "Cancelar",
+        "comment_button_reply": "Responder",
+        "comment_reply_place": "Responder comentário",
+        "chapter_list": "Lançamentos do Manga",
+        "chapter_tag": "Tags do Manga",
+        "notice_req_login_title": "Necessário login no sistema",
+        "notice_req_login": "Você precisa fazer login no sistema para usar esta função",
+        "button_close": "Fechar",
+        "button_login": "Iniciar Sessão",
+        "button_register": "Registrar",
+        "lable_home_top_day": "Top do Dia",
+        "lable_home_top_week": "Top Semanal",
+        "lable_home_top_month": "Top Mensal"
+      },
+      "data_lable": [
+        {
+          "key_mode": "manga",
+          "start_chapter": "Chapter",
+          "start_manga": "Manga"
+        },
+        {
+          "key_mode": "anime",
+          "start_chapter": "Episode",
+          "start_manga": "Anime|Movie"
+        },
+        {
+          "key_mode": "novel",
+          "start_chapter": "Volume",
+          "start_manga": "Novels"
+        }
+      ]
+    },
+
+    {
+      "key_lang": "it",
+      "data_date": {
+        "lbl_date_now": "now",
+        "lbl_date_minutes": "minutes",
+        "lbl_date_hour": "hour",
+        "lbl_date_yesterday": "yesterday",
+        "lbl_date_years": "years",
+        "lbl_date_months": "months",
+        "lbl_date_days": "days"
+      },
+      "lable_info": {
+        "info_home": "Home",
+        "info_name_other": "Titoli Alternativi",
+        "info_view": "Visualizzazioni",
+        "info_genres": "Genere",
+        "info_auth": "Autore",
+        "info_type": "Tipo",
+        "info_year": "Data di Pubblicazione",
+        "info_date": "Aggiornato il",
+        "info_status": "Stato",
+        "info_summary": "Sommario",
+        "info_start_read": "Leggi Primo",
+        "info_end_read": "Leggi Ultimo",
+        "info_continue_read": "Continua a Leggere",
+        "info_manga": "Dettagli del Manga",
+        "info_chapter_list": "Pubblicazioni del Manga",
+        "info_top_view_list": "Più Visti",
+        "info_search": "Ricerca",
+        "info_search_place": "Inserisci il numero del capitolo (Esempio 12)",
+        "info_next": "Successivo",
+        "info_prev": "Precedente",
+        "info_ads": "Rete Pubblicitaria",
+        "info_subscriber": "Iscritto",
+        "info_action": "Azione",
+        "info_add_action": "Aggiungi Nominati",
+        "info_read_later": "Aggiungi per Leggere in Seguito",
+        "info_favor": "Aggiungi ai Preferiti",
+        "info_add_collection": "Aggiungi alla Collezione",
+        "info_report": "Invia Report",
+        "info_login": "Accedi",
+        "info_register": "Registrati",
+        "info_popular": "Popolare",
+        "info_top_today": "Top Oggi",
+        "info_top_week": "Top Settimanale",
+        "info_top_month": "Top Mensile",
+        "comment_lable": "Commenti",
+        "comment_info": "Speriamo che tu ti diverta a navigare nella sezione commenti!",
+        "comment_input_place": "Unisciti al commento",
+        "comment_button_push": "Pubblica",
+        "comment_button_canel": "Annulla",
+        "comment_button_reply": "Rispondi",
+        "comment_reply_place": "Rispondi al commento",
+        "chapter_list": "Pubblicazioni del Manga",
+        "chapter_tag": "Tag del Manga",
+        "notice_req_login_title": "Accesso al Sistema Richiesto",
+        "notice_req_login": "Devi accedere al sistema per utilizzare questa funzione",
+        "button_close": "Chiudi",
+        "button_login": "Accedi",
+        "button_register": "Registrati",
+        "lable_home_top_day": "Top del Giorno",
+        "lable_home_top_week": "Top Settimanale",
+        "lable_home_top_month": "Top Mensile"
+      },
+      "data_lable": [
+        {
+          "key_mode": "manga",
+          "start_chapter": "Chapter",
+          "start_manga": "Manga"
+        },
+        {
+          "key_mode": "anime",
+          "start_chapter": "Episode",
+          "start_manga": "Anime|Movie"
+        },
+        {
+          "key_mode": "novel",
+          "start_chapter": "Volume",
+          "start_manga": "Novels"
+        }
+      ]
+    },
+    {
+      "key_lang": "ru",
+      "data_date": {
+        "lbl_date_now": "now",
+        "lbl_date_minutes": "minutes",
+        "lbl_date_hour": "hour",
+        "lbl_date_yesterday": "yesterday",
+        "lbl_date_years": "years",
+        "lbl_date_months": "months",
+        "lbl_date_days": "days"
+      },
+      "lable_info": {
+        "info_home": "Домой",
+        "info_name_other": "Альтернативные названия",
+        "info_view": "Просмотры",
+        "info_genres": "Жанр",
+        "info_auth": "Автор",
+        "info_type": "Тип",
+        "info_year": "Дата выпуска",
+        "info_date": "Обновление",
+        "info_status": "Статус",
+        "info_summary": "Резюме",
+        "info_start_read": "Читать сначала",
+        "info_end_read": "Читать последнее",
+        "info_continue_read": "Продолжить чтение",
+        "info_manga": "Детали манги",
+        "info_chapter_list": "Выпуски манги",
+        "info_top_view_list": "Топ просмотров",
+        "info_search": "Поиск",
+        "info_search_place": "Введите номер главы (Пример 12)",
+        "info_next": "Следующий",
+        "info_prev": "Предыдущий",
+        "info_ads": "Рекламная сеть",
+        "info_subscriber": "Подписчик",
+        "info_action": "Действие",
+        "info_add_action": "Добавить номинации",
+        "info_read_later": "Добавить в список для чтения позже",
+        "info_favor": "Добавить в избранное",
+        "info_add_collection": "Добавить в коллекцию",
+        "info_report": "Отправить отчет",
+        "info_login": "Войти",
+        "info_register": "Регистрация",
+        "info_popular": "Популярное",
+        "info_top_today": "Топ сегодня",
+        "info_top_week": "Топ недели",
+        "info_top_month": "Топ месяца",
+        "comment_lable": "Комментарии",
+        "comment_info": "Надеемся, вам понравится просматривать раздел комментариев!",
+        "comment_input_place": "Присоединяйтесь к обсуждению",
+        "comment_button_push": "Отправить",
+        "comment_button_canel": "Отмена",
+        "comment_button_reply": "Ответить",
+        "comment_reply_place": "Ответ на комментарий",
+        "chapter_list": "Выпуски манги",
+        "chapter_tag": "Теги манги",
+        "notice_req_login_title": "Требуется вход в систему",
+        "notice_req_login": "Вы должны войти в систему, чтобы использовать эту функцию",
+        "button_close": "Закрыть",
+        "button_login": "Войти",
+        "button_register": "Зарегистрироваться",
+        "lable_home_top_day": "Топ дня",
+        "lable_home_top_week": "Топ недели",
+        "lable_home_top_month": "Топ месяца"
+      },
+      "data_lable": [
+        {
+          "key_mode": "manga",
+          "start_chapter": "Chapter",
+          "start_manga": "Manga"
+        },
+        {
+          "key_mode": "anime",
+          "start_chapter": "Episode",
+          "start_manga": "Anime|Movie"
+        },
+        {
+          "key_mode": "novel",
+          "start_chapter": "Volume",
+          "start_manga": "Novels"
+        }
+      ]
+    },
+    {
+      "key_lang": "de",
+      "data_date": {
+        "lbl_date_now": "now",
+        "lbl_date_minutes": "minutes",
+        "lbl_date_hour": "hour",
+        "lbl_date_yesterday": "yesterday",
+        "lbl_date_years": "years",
+        "lbl_date_months": "months",
+        "lbl_date_days": "days"
+      },
+      "lable_info": {
+        "info_home": "Startseite",
+        "info_name_other": "Alternative Titel",
+        "info_view": "Ansichten",
+        "info_genres": "Genre",
+        "info_auth": "Autor",
+        "info_type": "Typ",
+        "info_year": "Veröffentlichungsdatum",
+        "info_date": "Aktualisiert am",
+        "info_status": "Status",
+        "info_summary": "Zusammenfassung",
+        "info_start_read": "Erste Lesung",
+        "info_end_read": "Letzte Lesung",
+        "info_continue_read": "Weiterlesen",
+        "info_manga": "Manga Details",
+        "info_chapter_list": "Manga Veröffentlichungen",
+        "info_top_view_list": "Top Ansichten",
+        "info_search": "Suche",
+        "info_search_place": "Geben Sie die Kapitelnummer ein (Beispiel 12)",
+        "info_next": "Nächster",
+        "info_prev": "Vorheriger",
+        "info_ads": "Anzeigennetzwerk",
+        "info_subscriber": "Abonnent",
+        "info_action": "Aktion",
+        "info_add_action": "Nominierungen hinzufügen",
+        "info_read_later": "Zum späteren Lesen hinzufügen",
+        "info_favor": "Zu Favoriten hinzufügen",
+        "info_add_collection": "Zur Sammlung hinzufügen",
+        "info_report": "Bericht senden",
+        "info_login": "Anmelden",
+        "info_register": "Registrieren",
+        "info_popular": "Beliebt",
+        "info_top_today": "Top Heute",
+        "info_top_week": "Top Woche",
+        "info_top_month": "Top Monat",
+        "comment_lable": "Kommentare",
+        "comment_info": "Wir hoffen, dass Sie Spaß beim Durchsuchen des Kommentarbereichs haben!",
+        "comment_input_place": "Treten Sie dem Kommentar bei",
+        "comment_button_push": "Veröffentlichen",
+        "comment_button_canel": "Abbrechen",
+        "comment_button_reply": "Antworten",
+        "comment_reply_place": "Antwort auf Kommentar",
+        "chapter_list": "Manga Veröffentlichungen",
+        "chapter_tag": "Manga Tags",
+        "notice_req_login_title": "Anmeldung erforderlich",
+        "notice_req_login": "Sie müssen sich im System anmelden, um diese Funktion zu verwenden",
+        "button_close": "Schließen",
+        "button_login": "Anmelden",
+        "button_register": "Registrieren",
+        "lable_home_top_day": "Top des Tages",
+        "lable_home_top_week": "Top Woche",
+        "lable_home_top_month": "Top Monat"
+      },
+      "data_lable": [
+        {
+          "key_mode": "manga",
+          "start_chapter": "Chapter",
+          "start_manga": "Manga"
+        },
+        {
+          "key_mode": "anime",
+          "start_chapter": "Episode",
+          "start_manga": "Anime|Movie"
+        },
+        {
+          "key_mode": "novel",
+          "start_chapter": "Volume",
+          "start_manga": "Novels"
+        }
+      ]
+    },
+    {
+      "key_lang": "fr",
+      "data_date": {
+        "lbl_date_now": "now",
+        "lbl_date_minutes": "minutes",
+        "lbl_date_hour": "hour",
+        "lbl_date_yesterday": "yesterday",
+        "lbl_date_years": "years",
+        "lbl_date_months": "months",
+        "lbl_date_days": "days"
+      },
+      "lable_info": {
+        "info_home": "Accueil",
+        "info_name_other": "Titres Alternatifs",
+        "info_view": "Vues",
+        "info_genres": "Genre",
+        "info_auth": "Auteur",
+        "info_type": "Type",
+        "info_year": "Date de Sortie",
+        "info_date": "Mis à Jour le",
+        "info_status": "Statut",
+        "info_summary": "Résumé",
+        "info_start_read": "Commencer la Lecture",
+        "info_end_read": "Lire Dernier",
+        "info_continue_read": "Continuer la Lecture",
+        "info_manga": "Détails du Manga",
+        "info_chapter_list": "Sorties du Manga",
+        "info_top_view_list": "Top Vues",
+        "info_search": "Rechercher",
+        "info_search_place": "Entrez le numéro du chapitre (Exemple 12)",
+        "info_next": "Suivant",
+        "info_prev": "Précédent",
+        "info_ads": "Réseau Publicitaire",
+        "info_subscriber": "Abonné",
+        "info_action": "Action",
+        "info_add_action": "Ajouter des Nominations",
+        "info_read_later": "Ajouter pour Lire Plus Tard",
+        "info_favor": "Ajouter aux Favoris",
+        "info_add_collection": "Ajouter à la Collection",
+        "info_report": "Envoyer un Rapport",
+        "info_login": "Connexion",
+        "info_register": "S'Inscrire",
+        "info_popular": "Populaire",
+        "info_top_today": "Top Aujourd'hui",
+        "info_top_week": "Top Semaine",
+        "info_top_month": "Top Mois",
+        "comment_lable": "Commentaires",
+        "comment_info": "Nous espérons que vous passerez un bon moment à parcourir la section des commentaires !",
+        "comment_input_place": "Rejoignez la discussion",
+        "comment_button_push": "Poster",
+        "comment_button_canel": "Annuler",
+        "comment_button_reply": "Répondre",
+        "comment_reply_place": "Répondre au commentaire",
+        "chapter_list": "Sorties du Manga",
+        "chapter_tag": "Tags du Manga",
+        "notice_req_login_title": "Connexion Requise",
+        "notice_req_login": "Vous devez vous connecter au système pour utiliser cette fonctionnalité",
+        "button_close": "Fermer",
+        "button_login": "Connexion",
+        "button_register": "S'Inscrire",
+        "lable_home_top_day": "Top du Jour",
+        "lable_home_top_week": "Top Semaine",
+        "lable_home_top_month": "Top Mois"
+      },
+      "data_lable": [
+        {
+          "key_mode": "manga",
+          "start_chapter": "Chapter",
+          "start_manga": "Manga"
+        },
+        {
+          "key_mode": "anime",
+          "start_chapter": "Episode",
+          "start_manga": "Anime|Movie"
+        },
+        {
+          "key_mode": "novel",
+          "start_chapter": "Volume",
+          "start_manga": "Novels"
+        }
+      ]
+    }
+
+  ]
+}

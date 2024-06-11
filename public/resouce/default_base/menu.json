@@ -1,0 +1,538 @@
+{
+  "data_menu_lang": [
+    {
+      "key_lang": "en",
+      "menu_lang": [
+        {
+          "key_type": "pageManga",
+          "lable": "Manga"
+        },
+        {
+          "key_type": "pageNovel",
+          "lable": "Novel"
+        },
+        {
+          "key_type": "manga-en",
+          "lable": "Manga Scan(English)"
+        },
+        {
+          "key_type": "manga-ru",
+          "lable": "Manga (Russian)"
+        },
+        {
+          "key_type": "manga-br",
+          "lable": "Manga (Português)"
+        },
+        {
+          "key_type": "manga-it",
+          "lable": "Manga (Italy)"
+        },
+        {
+          "key_type": "manga-es",
+          "lable": "Manga (Español)"
+        },
+        {
+          "key_type": "manga-de",
+          "lable": "Manga (Deutsch)"
+        },
+        {
+          "key_type": "manga-fr",
+          "lable": "Manga (France)"
+        },
+        {
+          "key_type": "novel-en",
+          "lable": "Novels (English)"
+        },
+        {
+          "key_type": "novel-ru",
+          "lable": "Novel (Russian)"
+        },
+        {
+          "key_type": "novel-it",
+          "lable": "Novel (Italy)"
+        },
+        {
+          "key_type": "novel-es",
+          "lable": "Novel (Español)"
+        },
+        {
+          "key_type": "novel-de",
+          "lable": "Novel (Deutsch)"
+        },
+        {
+          "key_type": "novel-fr",
+          "lable": "Novel (France)"
+        }
+      ]
+    },
+    {
+      "key_lang": "es",
+      "menu_lang": [
+        {
+          "key_type": "pageManga",
+          "lable": "Manga"
+        },
+        {
+          "key_type": "pageNovel",
+          "lable": "Novel"
+        },
+        {
+          "key_type": "manga-en",
+          "lable": "Manga Scan(English)"
+        },
+        {
+          "key_type": "manga-ru",
+          "lable": "Manga (Russian)"
+        },
+        {
+          "key_type": "manga-br",
+          "lable": "Manga (Português)"
+        },
+        {
+          "key_type": "manga-it",
+          "lable": "Manga (Italy)"
+        },
+        {
+          "key_type": "manga-es",
+          "lable": "Manga (Español)"
+        },
+        {
+          "key_type": "manga-de",
+          "lable": "Manga (Deutsch)"
+        },
+        {
+          "key_type": "manga-fr",
+          "lable": "Manga (France)"
+        },
+        {
+          "key_type": "novel-en",
+          "lable": "Novels (English)"
+        },
+        {
+          "key_type": "novel-ru",
+          "lable": "Novel (Russian)"
+        },
+        {
+          "key_type": "novel-it",
+          "lable": "Novel (Italy)"
+        },
+        {
+          "key_type": "novel-es",
+          "lable": "Novel (Español)"
+        },
+        {
+          "key_type": "novel-de",
+          "lable": "Novel (Deutsch)"
+        },
+        {
+          "key_type": "novel-fr",
+          "lable": "Novel (France)"
+        }
+      ]
+    },
+    {
+      "key_lang": "br",
+      "menu_lang": [
+        {
+          "key_type": "pageManga",
+          "lable": "Manga"
+        },
+        {
+          "key_type": "pageNovel",
+          "lable": "Novel"
+        },
+        {
+          "key_type": "manga-en",
+          "lable": "Manga Scan(English)"
+        },
+        {
+          "key_type": "manga-ru",
+          "lable": "Manga (Russian)"
+        },
+        {
+          "key_type": "manga-br",
+          "lable": "Manga (Português)"
+        },
+        {
+          "key_type": "manga-it",
+          "lable": "Manga (Italy)"
+        },
+        {
+          "key_type": "manga-es",
+          "lable": "Manga (Español)"
+        },
+        {
+          "key_type": "manga-de",
+          "lable": "Manga (Deutsch)"
+        },
+        {
+          "key_type": "manga-fr",
+          "lable": "Manga (France)"
+        },
+        {
+          "key_type": "novel-en",
+          "lable": "Novels (English)"
+        },
+        {
+          "key_type": "novel-ru",
+          "lable": "Novel (Russian)"
+        },
+        {
+          "key_type": "novel-it",
+          "lable": "Novel (Italy)"
+        },
+        {
+          "key_type": "novel-es",
+          "lable": "Novel (Español)"
+        },
+        {
+          "key_type": "novel-de",
+          "lable": "Novel (Deutsch)"
+        },
+        {
+          "key_type": "novel-fr",
+          "lable": "Novel (France)"
+        }
+      ]
+    },
+    {
+      "key_lang": "it",
+      "menu_lang": [
+        {
+          "key_type": "pageManga",
+          "lable": "Manga"
+        },
+        {
+          "key_type": "pageNovel",
+          "lable": "Novel"
+        },
+        {
+          "key_type": "manga-en",
+          "lable": "Manga Scan(English)"
+        },
+        {
+          "key_type": "manga-ru",
+          "lable": "Manga (Russian)"
+        },
+        {
+          "key_type": "manga-br",
+          "lable": "Manga (Português)"
+        },
+        {
+          "key_type": "manga-it",
+          "lable": "Manga (Italy)"
+        },
+        {
+          "key_type": "manga-es",
+          "lable": "Manga (Español)"
+        },
+        {
+          "key_type": "manga-de",
+          "lable": "Manga (Deutsch)"
+        },
+        {
+          "key_type": "manga-fr",
+          "lable": "Manga (France)"
+        },
+        {
+          "key_type": "novel-en",
+          "lable": "Novels (English)"
+        },
+        {
+          "key_type": "novel-ru",
+          "lable": "Novel (Russian)"
+        },
+        {
+          "key_type": "novel-it",
+          "lable": "Novel (Italy)"
+        },
+        {
+          "key_type": "novel-es",
+          "lable": "Novel (Español)"
+        },
+        {
+          "key_type": "novel-de",
+          "lable": "Novel (Deutsch)"
+        },
+        {
+          "key_type": "novel-fr",
+          "lable": "Novel (France)"
+        }
+      ]
+    },
+    {
+      "key_lang": "ru",
+      "menu_lang": [
+        {
+          "key_type": "pageManga",
+          "lable": "Manga"
+        },
+        {
+          "key_type": "pageNovel",
+          "lable": "Novel"
+        },
+        {
+          "key_type": "manga-en",
+          "lable": "Manga Scan(English)"
+        },
+        {
+          "key_type": "manga-ru",
+          "lable": "Manga (Russian)"
+        },
+        {
+          "key_type": "manga-br",
+          "lable": "Manga (Português)"
+        },
+        {
+          "key_type": "manga-it",
+          "lable": "Manga (Italy)"
+        },
+        {
+          "key_type": "manga-es",
+          "lable": "Manga (Español)"
+        },
+        {
+          "key_type": "manga-de",
+          "lable": "Manga (Deutsch)"
+        },
+        {
+          "key_type": "manga-fr",
+          "lable": "Manga (France)"
+        },
+        {
+          "key_type": "novel-en",
+          "lable": "Novels (English)"
+        },
+        {
+          "key_type": "novel-ru",
+          "lable": "Novel (Russian)"
+        },
+        {
+          "key_type": "novel-it",
+          "lable": "Novel (Italy)"
+        },
+        {
+          "key_type": "novel-es",
+          "lable": "Novel (Español)"
+        },
+        {
+          "key_type": "novel-de",
+          "lable": "Novel (Deutsch)"
+        },
+        {
+          "key_type": "novel-fr",
+          "lable": "Novel (France)"
+        }
+      ]
+    },
+    {
+      "key_lang": "de",
+      "menu_lang": [
+        {
+          "key_type": "pageManga",
+          "lable": "Manga"
+        },
+        {
+          "key_type": "pageNovel",
+          "lable": "Novel"
+        },
+        {
+          "key_type": "manga-en",
+          "lable": "Manga Scan(English)"
+        },
+        {
+          "key_type": "manga-ru",
+          "lable": "Manga (Russian)"
+        },
+        {
+          "key_type": "manga-br",
+          "lable": "Manga (Português)"
+        },
+        {
+          "key_type": "manga-it",
+          "lable": "Manga (Italy)"
+        },
+        {
+          "key_type": "manga-es",
+          "lable": "Manga (Español)"
+        },
+        {
+          "key_type": "manga-de",
+          "lable": "Manga (Deutsch)"
+        },
+        {
+          "key_type": "manga-fr",
+          "lable": "Manga (France)"
+        },
+        {
+          "key_type": "novel-en",
+          "lable": "Novels (English)"
+        },
+        {
+          "key_type": "novel-ru",
+          "lable": "Novel (Russian)"
+        },
+        {
+          "key_type": "novel-it",
+          "lable": "Novel (Italy)"
+        },
+        {
+          "key_type": "novel-es",
+          "lable": "Novel (Español)"
+        },
+        {
+          "key_type": "novel-de",
+          "lable": "Novel (Deutsch)"
+        },
+        {
+          "key_type": "novel-fr",
+          "lable": "Novel (France)"
+        }
+      ]
+    },
+    {
+      "key_lang": "fr",
+      "menu_lang": [
+        {
+          "key_type": "pageManga",
+          "lable": "Manga"
+        },
+        {
+          "key_type": "pageNovel",
+          "lable": "Novel"
+        },
+        {
+          "key_type": "manga-en",
+          "lable": "Manga Scan(English)"
+        },
+        {
+          "key_type": "manga-ru",
+          "lable": "Manga (Russian)"
+        },
+        {
+          "key_type": "manga-br",
+          "lable": "Manga (Português)"
+        },
+        {
+          "key_type": "manga-it",
+          "lable": "Manga (Italy)"
+        },
+        {
+          "key_type": "manga-es",
+          "lable": "Manga (Español)"
+        },
+        {
+          "key_type": "manga-de",
+          "lable": "Manga (Deutsch)"
+        },
+        {
+          "key_type": "manga-fr",
+          "lable": "Manga (France)"
+        },
+        {
+          "key_type": "novel-en",
+          "lable": "Novels (English)"
+        },
+        {
+          "key_type": "novel-ru",
+          "lable": "Novel (Russian)"
+        },
+        {
+          "key_type": "novel-it",
+          "lable": "Novel (Italy)"
+        },
+        {
+          "key_type": "novel-es",
+          "lable": "Novel (Español)"
+        },
+        {
+          "key_type": "novel-de",
+          "lable": "Novel (Deutsch)"
+        },
+        {
+          "key_type": "novel-fr",
+          "lable": "Novel (France)"
+        }
+      ]
+    }
+  ],
+  "data_menu": [
+
+    {
+      "Path": "/comic-en",
+      "key_type": "comic-en",
+      "index": 2,
+      "child": []
+    },
+    {
+      "Path": "#manga",
+      "key_type": "pageManga",
+      "index": 1,
+      "child": [
+        {
+          "key_type": "manga-en",
+          "index": 1
+        },
+        {
+          "key_type": "manga-ru",
+          "index": 2
+        },
+        {
+          "key_type": "manga-it",
+          "index": 3
+        },
+        {
+          "key_type": "manga-es",
+          "index": 4
+        },
+        {
+          "key_type": "manga-de",
+          "index": 5
+        },
+        {
+          "key_type": "manga-fr",
+          "index": 5
+        },
+        {
+          "key_type": "manga-br",
+          "index": 6
+        }
+      ]
+    },
+    {
+      "Path": "#novel",
+      "key_type": "pageNovel",
+      "index": 1,
+      "child": [
+        {
+          "key_type": "novel-en",
+          "index": 1
+        },
+        {
+          "key_type": "novel-ru",
+          "index": 2
+        },
+        {
+          "key_type": "novel-it",
+          "index": 3
+        },
+        {
+          "key_type": "novel-es",
+          "index": 4
+        },
+        {
+          "key_type": "novel-de",
+          "index": 5
+        },
+        {
+          "key_type": "novel-fr",
+          "index": 5
+        },
+        {
+          "key_type": "novel-br",
+          "index": 5
+        }
+      ]
+    }
+  ]
+}
